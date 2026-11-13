@@ -15,7 +15,7 @@ Zero-dependency auto-pairs + surround + tabout for Neovim. **~450 LOC**, no tree
 | **Backspace** | `<BS>` | Deletes both sides of empty pairs |
 | **Enter** | `<CR>` | Expands empty brackets with indent |
 | **Surround** | `sa`/`sd`/`sr` | Add/delete/replace surrounds |
-| **Visual wrap** | `s` + char | Quick-wrap selection with `([{"'` |
+| **Visual wrap** | `v` + <your direction> + `pairs` | Quick-wrap selection with `([{"'` |
 | **Tabout** | `<Tab>`/`<S-Tab>` | Jump out of `)]}>"'` / back to `([{<` |
 
 ## 📥Installation
