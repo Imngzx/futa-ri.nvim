@@ -4,6 +4,9 @@
 
 Zero-dependency auto-pairs + surround + tabout for Neovim. **~450 LOC**, no treesitter, no config needed.
 
+> [!TIP]
+> This plugin is the exact same autopair feature used in [Stellar:Vim](https://github.com/Imngzx/stellar-vim)
+
 ## Features
 
 | Feature | Keys | Description |
@@ -15,9 +18,9 @@ Zero-dependency auto-pairs + surround + tabout for Neovim. **~450 LOC**, no tree
 | **Visual wrap** | `s` + char | Quick-wrap selection with `([{"'` |
 | **Tabout** | `<Tab>`/`<S-Tab>` | Jump out of `)]}>"'` / back to `([{<` |
 
-## Installation
+## 📥Installation
 
-### lazy.nvim (recommended)
+### 💤[lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
@@ -28,7 +31,7 @@ Zero-dependency auto-pairs + surround + tabout for Neovim. **~450 LOC**, no tree
 
 Auto-initializes on first `InsertEnter`. No `setup()` call required.
 
-### resonance.nvim (native vim.pack)
+### 🔊[resonance.nvim](https://github.com/Imgnzx/resonance.nvim)
 
 ```lua
 -- Load on InsertEnter via resonance
@@ -38,13 +41,10 @@ require('resonance').load({
 })
 ```
 
-### Manual (no plugin manager)
+### Using vimpack
 
 ```lua
--- Clone to ~/.local/share/nvim/site/pack/core/opt/futari.nvim
--- Then in init.lua:
-vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/site/pack/core/opt/futari.nvim')
--- Auto-loads on InsertEnter via plugin/futari.lua
+vim.pack.add("https://github.com/Imngzx/futari.nvim")
 ```
 
 ## Quick Demo
