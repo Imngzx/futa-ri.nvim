@@ -1,4 +1,4 @@
-# futari.nvim (二人)
+# futa-ri.nvim (二人)
 
 > **futari** /ɸɯ̥taɾi/ — *Japanese for "two people / pair"*
 
