@@ -1,0 +1,116 @@
+*futari.txt*   futari.nvim - Zero-dep auto-pairs, surround, tabout
+
+==============================================================================
+INTRODUCTION                                          *futari-introduction*
+
+futari.nvim (二人 - "two people / pair") is a minimal, zero-dependency plugin
+providing three editing aids:
+
+  1. Auto-pairs          Insert matching brackets/quotes automatically
+  2. Surround            Add/delete/replace surrounding pairs (sa/sd/sr)
+  3. Tabout              <Tab>/<S-Tab> to jump out of closing pairs
+
+Total: ~450 lines of Lua. No treesitter, no external deps, no config required.
+
+==============================================================================
+INSTALLATION                                          *futari-installation*
+
+Using lazy.nvim:
+
+    {
+      'yourname/futari.nvim',
+      event = 'InsertEnter',
+    }
+
+The plugin auto-initializes on first InsertEnter. No config call needed.
+
+==============================================================================
+AUTO-PAIRS                                            *futari-pairs*
+
+In insert mode (and optionally cmdline mode):
+
+  Type          Result
+  (             () with cursor inside
+  [             [] with cursor inside
+  {             {} with cursor inside
+  "             "" with cursor inside (smart)
+  '             '' with cursor inside (smart)
+  `             `` with cursor inside (smart)
+  ) ] }         Overtypes if matching closer is next char
+  <BS>          Deletes both sides of empty pair () [] {} "" '' ``
+  <CR>          Inside empty brackets: expands with proper indentation
+
+Smart quote behavior:
+  - Double-tap quote (e.g. "" → "") inserts literal pair
+  - Triple-quote detection: """ ''' ``` (for docstrings/markdown)
+  - Skips pairing if preceding/following char is alphanumeric
+
+Disable cmdline mappings:
+    require('futari').setup({ pairs = { enable_cmdline = false } })
+
+==============================================================================
+SURROUND                                              *futari-surround*
+
+Normal mode:
+  sa{motion}{char}   Add surround (e.g. saw" → surround word with ")
+  sd{char}           Delete surround (e.g. sd" → delete surrounding ")
+  sr{old}{new}       Replace surround (e.g. sr"' → change " to ')
+
+Visual mode:
+  sa{char}           Prompt for char, wrap selection
+  s{char}            Quick-wrap with ( [ { " ' ` (no prompt)
+
+Examples:
+  saw"               Surround word with double quotes
+  sa){               Surround sentence with parens (uses motion)
+  vip s"             Surround paragraph with quotes (visual)
+  sd"                Delete surrounding quotes
+  sr"'               Change surrounding quotes to single
+
+==============================================================================
+TABOUT                                                *futari-tabout*
+
+Insert mode:
+  <Tab>      Jump forward to next closing pair ) ] } > " ' `
+  <S-Tab>    Jump backward to before opening pair ( [ { <
+
+Behavior:
+  - Respects nesting depth for brackets
+  - For symmetric quotes (" ' `), checks for matching opener on other side
+  - If completion menu (pumvisible) is open, passes through to completion
+  - No-op if no valid pair ahead/behind
+
+==============================================================================
+CONFIGURATION                                         *futari-configuration*
+
+Optional. Call in your config if you want to customize:
+
+    require('futari').setup({
+      pairs = {
+        enable_cmdline = true,  -- default: true
+      },
+      surround = {},            -- no options yet
+      tabout = {},              -- no options yet
+    })
+
+==============================================================================
+DESIGN PHILOSOPHY                                     *futari-design*
+
+- KISS: Do one thing well, no bloat
+- Zero dependencies: Only stdlib + Neovim API
+- Byte-level operations: Fast, no grapheme cluster complexity
+- Single-line surround: Avoids treesitter, works everywhere
+- Opinionated defaults: No decision fatigue
+
+Known limitations (by design):
+  - Surround works on current line only
+  - No treesitter-aware pairing (skip in strings/comments)
+  - No dot-repeat for surround operations
+  - Hardcoded keymaps (sa/sd/sr, Tab/S-Tab)
+
+==============================================================================
+LICENSE                                               *futari-license*
+
+MIT License - see LICENSE file.
+
+Copyright (c) 2026 Imngzx
