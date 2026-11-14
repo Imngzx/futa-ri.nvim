@@ -5,7 +5,7 @@
 Zero-dependency auto-pairs + surround + tabout for Neovim. **~450 LOC**, no treesitter, no config needed.
 
 > [!TIP]
-> This plugin is the exact same autopair feature used in [Stellar:Vim](https://github.com/Imngzx/stellar-vim)
+> This plugin is the exact same autopair feature used in [Stellar:Vim](https://github.com/Imngzx/stellar-vim/tree/nvim-native/lua/custom/autopairs)
 
 ## Features
 
@@ -24,7 +24,7 @@ Zero-dependency auto-pairs + surround + tabout for Neovim. **~450 LOC**, no tree
 
 ```lua
 {
-  'Imngzx/futari.nvim',
+  'Imngzx/futa-ri.nvim',
   event = 'InsertEnter',
 }
 ```
@@ -36,7 +36,7 @@ Auto-initializes on first `InsertEnter`. No `setup()` call required.
 ```lua
 -- Load on InsertEnter via resonance
 require('resonance').load({
-  'https://github.com/Imngzx/futari.nvim',
+  'https://github.com/Imngzx/futa-ri.nvim',
   event = 'InsertEnter',
 })
 ```
@@ -44,7 +44,7 @@ require('resonance').load({
 ### Using vimpack
 
 ```lua
-vim.pack.add("https://github.com/Imngzx/futari.nvim")
+vim.pack.add("https://github.com/Imngzx/futa-ri.nvim")
 ```
 
 ## Quick Demo
@@ -59,13 +59,13 @@ end
 """|"""  -- docstring ready
 
 -- Surround
-saw"      -- surround word with "
+sa"w      -- surround word with "
 sd"       -- delete surrounding "
 sr"'      -- change " to '
 
 -- Tabout
-foo(|)    -- <Tab> → foo()|
-foo(|)    -- <S-Tab> → |foo()
+foo(|)    -- <Tab>   → foo()| ->
+foo(|)    -- <S-Tab> → foo(|) <-
 ```
 
 ## Configuration (Optional)
@@ -85,7 +85,6 @@ require('futari').setup({
 - **KISS**: ~450 lines, three features, zero bloat
 - **Zero deps**: Only Lua stdlib + Neovim API
 - **Fast**: Byte-level scans, no allocations in hot path
-- **Honest**: Single-line surround, no treesitter, hardcoded keymaps
 
 ## Limitations (by Design)
 
