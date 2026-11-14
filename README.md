@@ -44,7 +44,7 @@ require('resonance').load({
 ### Using vimpack
 
 ```lua
-vim.pack.add("https://github.com/Imngzx/futa-ri.nvim")
+vim.pack.add({"https://github.com/Imngzx/futa-ri.nvim"})
 ```
 
 ## Quick Demo
