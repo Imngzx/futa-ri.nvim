@@ -8,7 +8,7 @@ local spec = require('futari.spec')
 
 local surrounds = spec.surrounds
 local ESC_KEY = api.nvim_replace_termcodes('<Esc>', true, false, true)
-local TITLE = 'Stellar:Surround'
+local TITLE = 'futari-pairs'
 
 --- Ask user safely
 local function get_char(prompt)
